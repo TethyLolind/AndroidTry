@@ -1,5 +1,6 @@
 package com.example.bzhang26.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +14,16 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         Button buttonTest=(Button)findViewById(R.id.button);
+        final Intent intent=getIntent();
+        final boolean flag=intent.getBooleanExtra("flag",false);
         buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SecondActivity.this
-                ,"You Click it !",Toast.LENGTH_SHORT).show();
+                if (flag){
+                    Toast.makeText(SecondActivity.this
+                            ,intent.getStringExtra("extradata"),Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });

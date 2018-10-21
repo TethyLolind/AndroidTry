@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toSecondActivity=new Intent(MainActivity.this,SecondActivity.class);
+                toSecondActivity.putExtra("extradata","hahaha");
+                toSecondActivity.putExtra("flag",true);
                 startActivity(toSecondActivity);
             }
         });
