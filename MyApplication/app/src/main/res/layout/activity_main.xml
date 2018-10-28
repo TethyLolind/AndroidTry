@@ -1,74 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <include layout="@layout/titlelayout" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/dialogButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dialog" />
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
             <Button
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"
+                android:layout_gravity="center"
+                android:text="Act2"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="27dp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="progress dialog" />
+                android:layout_gravity="center"
+                android:text="ACT3" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:layout_height="53dp"
                 android:text="EXIT"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="127dp"
-                tools:layout_editor_absoluteY="27dp" />
+                tools:ignore="MissingConstraints"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+
+
+            <Button
+                android:id="@+id/dialogButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Dialog" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="progress dialog" />
 
             <Button
                 android:id="@+id/ieButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Progress On"/>
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-
-                />
-
-            <TextView
-                android:id="@+id/text1"
                 android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:text="***8******" />
-
+                android:text="Progress On" />
         </LinearLayout>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Text View " />
+
+</LinearLayout>

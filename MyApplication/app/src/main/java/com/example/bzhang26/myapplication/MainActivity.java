@@ -2,9 +2,9 @@ package com.example.bzhang26.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,31 +15,17 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ProgressBar progressBar;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.add_item:
-                Toast.makeText(this,"you click add",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.remove_item:
-                Toast.makeText(this,"you click remove",Toast.LENGTH_SHORT).show();
-                break;
-            default:
 
-        }
-        return true;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar actionBar=getSupportActionBar();
+        if (actionBar!=null) actionBar.hide();
 
         Button buttonMain=(Button)findViewById(R.id.button2);
         buttonMain.setOnClickListener(new View.OnClickListener() {
@@ -50,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        Button buttonNext=(Button)findViewById(R.id.button3);
-        buttonNext.setOnClickListener(MainActivity.this);
+        Button buttonACT2=(Button)findViewById(R.id.button3);
+        buttonACT2.setOnClickListener(MainActivity.this);
 
         Button buttonDialog=(Button)findViewById(R.id.dialogButton);
         buttonDialog.setOnClickListener(MainActivity.this);
@@ -61,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button buttonImageProgress=(Button)findViewById(R.id.ieButton);
         buttonDiaProgress.setOnClickListener(MainActivity.this);
+
+        Button buttonACT3=(Button)findViewById(R.id.button6);
+        buttonACT3.setOnClickListener(MainActivity.this);
 
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
@@ -87,13 +76,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 progressDialog.setCancelable(true);
                 progressDialog.show();
                 break;
+            case R.id.button6:
+                Intent toACT3=new Intent(MainActivity.this,ThirdActivity.class);
+                startActivity(toACT3);
+                break;
             case R.id.ieButton:
-
                 int count=progressBar.getProgress();
                 count=count+5;
                 progressBar.setProgress(count);
                 break;
-             default:break;
+
+            default:break;
         }
 
     }
