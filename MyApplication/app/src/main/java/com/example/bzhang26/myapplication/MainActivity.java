@@ -12,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -20,6 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar ;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
+    private CheckBox newuserCheckBOX;
+    private Switch sendInfoSwitch;
+
+    private boolean shouldSendInfoByintent=false;
+    private  boolean isNewUser=false;
 
 
 
@@ -63,15 +70,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button customBroadbutton=(Button)findViewById(R.id.customBroadbutton);
         customBroadbutton.setOnClickListener(MainActivity.this);
 
+        newuserCheckBOX=(CheckBox)findViewById(R.id.newUsercheckBox);
+        sendInfoSwitch=(Switch) findViewById(R.id.sendInfointentswitch);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 //broadcast detector
 
-        //接受的过滤器
+        //接收的过滤器
         intentFilter=new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
 
-        //接手后要做的事情
+        //接收后要做的事情
         networkChangeReceiver=new NetworkChangeReceiver();
         registerReceiver(networkChangeReceiver,intentFilter);
 
@@ -83,13 +93,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.toACT2button:
                 Intent toACT2 =new Intent(MainActivity.this,SecondActivity.class);
-                toACT2.putExtra("extradata","999");
-                toACT2.putExtra("flag",true);
+                if (sendInfoSwitch.isChecked())  {
+                    toACT2.putExtra("data", "999 from main activity");
+                    toACT2.putExtra("flag", newuserCheckBOX.isChecked());
+
+                }
                 startActivity(toACT2);
                 break;
             case R.id.toACT3button:
@@ -121,6 +137,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent toRecActivity=new Intent(MainActivity.this,recycleActivity.class);
                 startActivity(toRecActivity);
 
+                break;
+            case R.id.sendInfointentswitch:
+                shouldSendInfoByintent=sendInfoSwitch.getShowText();
+                boolean a=sendInfoSwitch.isSelected();
                 break;
 
             case R.id.customBroadbutton:

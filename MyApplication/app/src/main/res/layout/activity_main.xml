@@ -22,8 +22,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +37,7 @@
                 android:layout_gravity="center"
                 android:text="Act2"
 
- />
+                />
 
             <Button
                 android:id="@+id/toACT3button"
@@ -52,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="EXIT"/>
+                android:text="EXIT" />
 
             <Button
                 android:id="@+id/recyclebutton"
@@ -76,6 +75,12 @@
                 android:text="Dialog" />
 
             <Button
+                android:id="@+id/customBroadbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
+
+            <Button
                 android:id="@+id/progressButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,6 +95,26 @@
                 android:text="Progress On" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <Switch
+                android:id="@+id/sendInfointentswitch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Send info to ACT2"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/newUsercheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Is New User"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ProgressBar
@@ -97,11 +122,15 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Progress" />
+
+
+
 
 </LinearLayout>

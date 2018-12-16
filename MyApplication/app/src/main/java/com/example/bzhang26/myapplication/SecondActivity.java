@@ -1,28 +1,22 @@
 package com.example.bzhang26.myapplication;
 
 import android.content.Intent;
-import android.hardware.usb.UsbRequest;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class SecondActivity extends AppCompatActivity {
 
     private List<User> defaultUserList =new ArrayList<>();
+    private DataStorage db;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main,menu);
@@ -48,18 +42,48 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        final EditText userID=(EditText)findViewById(R.id.userID);
+        final EditText userPswd=(EditText)findViewById(R.id.userPswd);
 
-        Button buttonConfirm =(Button)findViewById(R.id.confirmbutton);
+
+        final Button buttonLoginLast =(Button)findViewById(R.id.lastLoginbutton);
+        buttonLoginLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if (db!=null){
+                   String lastLoginInfo=db.ReadData();
+                   Toast.makeText(SecondActivity.this,lastLoginInfo,Toast.LENGTH_LONG).show();
+
+               }
+               else {
+                   Toast.makeText(SecondActivity.this,"no info",Toast.LENGTH_LONG).show();
+               }
+                }
+        });
+
+        final Button buttonConfirm =(Button)findViewById(R.id.confirmbutton);
         final Intent intent=getIntent();
-        final boolean flag=intent.getBooleanExtra("flag",false);
+        final boolean isNewUser=intent.getBooleanExtra("flag",false);
+        if (isNewUser){
+            buttonConfirm.setText("Register");
+        }
+        final String dataFromMain =intent.getStringExtra("data");
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (flag){
-                    Toast.makeText(SecondActivity.this
-                            ,intent.getStringExtra("extradata"),Toast.LENGTH_SHORT).show();
+                if (userPswd!=null&&userID!=null){
+                    db=new DataStorage(userID.getText().toString()+"_"+userPswd.getText().toString()+"_"+isNewUser,SecondActivity.this);
+                    db.SaveToFile();
+                    db.SaveToPreference();
+
+
+                }else{
+                    Toast.makeText(SecondActivity.this,"LACK INPUT",Toast.LENGTH_SHORT).show();
                 }
 
+                userID.setText("");
+                userPswd.setText("");
+                Toast.makeText(SecondActivity.this,"has been logined in",Toast.LENGTH_SHORT).show();
 
            }
         });
